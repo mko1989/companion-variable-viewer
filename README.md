@@ -25,6 +25,10 @@ The application runs a local web server (Express.js) and a WebSocket server (Soc
 
 ## Getting Started
 
+### Running release version
+
+*   Just download latest version from the releases for your system and run.
+
 ### Prerequisites
 
 *   Node.js and npm (for running from source or building).

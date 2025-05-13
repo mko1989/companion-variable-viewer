@@ -1,0 +1,14 @@
+/* Styles specific to the viewer page */
+
+body {
+    margin: 0; /* Override shared style for fullscreen */
+    padding: 0;
+    overflow: hidden; /* Ensure no scrollbars appear on body */
+}
+
+.variable-display {
+    /* Add any default styling for dynamically created variables here if needed */
+    /* For example: */
+    /* padding: 5px; */
+    /* white-space: pre-wrap; */ /* Handle potential line breaks in variable values */
+}

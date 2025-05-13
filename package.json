@@ -1,0 +1,47 @@
+{
+  "name": "companion_variable_viewer",
+  "version": "1.0.0",
+  "description": "Web app to display Companion variables",
+  "main": "electron-main.js",
+  "scripts": {
+    "start": "electron .",
+    "pack": "electron-builder --dir",
+    "dist": "electron-builder",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "Companion",
+    "Variables",
+    "OSC",
+    "Websocket"
+  ],
+  "author": "Your Name",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.19.2",
+    "socket.io": "^4.7.5"
+  },
+  "devDependencies": {
+    "electron": "^31.0.1",
+    "electron-builder": "^24.13.3"
+  },
+  "build": {
+    "appId": "com.example.companionvariableviewer",
+    "productName": "Companion Variable Viewer",
+    "files": [
+      "electron-main.js",
+      "src/**/*",
+      "public/**/*",
+      "node_modules/**/*"
+    ],
+    "directories": {
+      "output": "dist_electron"
+    },
+    "mac": {
+      "category": "public.app-category.utilities"
+    },
+    "win": {
+      "target": "nsis"
+    }
+  }
+}

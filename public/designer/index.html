@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Variable Viewer - Designer</title>
+    <link rel="stylesheet" href="../shared/style.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="designer-container">
+        <div id="sidebar">
+            <h1>Designer Controls</h1>
+            <p>Configure layout and styles.</p>
+            <hr>
+            <h2>Canvas</h2>
+            <label for="background-input">Background Image URL/Color:</label>
+            <div class="background-input-container">
+                <input type="text" id="background-input" placeholder="URL or #RRGGBB, color name">
+                <input type="color" id="background-color-picker" title="Pick a background color">
+            </div>
+            <button id="set-background-btn">Set Background</button>
+            <hr>
+            <div id="variable-controls" style="display: none;">
+                <h3>Selected: <span id="selected-variable-name">None</span></h3>
+                <label for="font-size-input">Font Size (e.g., 16px, 1.5em):</label>
+                <input type="text" id="font-size-input" placeholder="1em">
+
+                <label for="color-input">Color:</label>
+                <input type="color" id="color-input" value="#000000">
+                <!-- Add more controls like font-family later -->
+            </div>
+            <hr>
+            <button id="save-layout-btn">Save Layout</button>
+             <!-- Could add variable list/add button here later -->
+            <hr>
+            <h2>App Settings</h2>
+            <div>
+                <label for="app-port-input">Server Port:</label>
+                <input type="number" id="app-port-input" placeholder="3333">
+                <button id="save-port-btn">Save Port</button>
+                <p style="font-size: 0.8em; color: #555;">Requires app restart to take effect.</p>
+            </div>
+            <hr>
+            <h2>Viewer Links</h2>
+            <div id="viewer-links-container">
+                <p>Loading viewer links...</p>
+            </div>
+            <!-- <button id="open-viewer-btn">Open Viewer Window</button> -->
+        </div>
+
+        <div id="main-content">
+             <div id="canvas">
+                <!-- Variables will be draggable and configurable here -->
+                <!-- Initial example (might be removed by loadLayout) -->
+               <!-- <div class="variable-placeholder" data-variable-name="$(internal:time_hm)">
+                    <div class="variable-title">$(internal:time_hm)</div>
+                    <div class="variable-text-content">$(internal:time_hm)</div>
+                    <input type="checkbox" class="variable-enable-checkbox" checked title="Enable/Disable this variable in the viewer" style="position: absolute; top: 2px; right: 2px; cursor: pointer;">
+                </div> -->
+            </div>
+        </div>
+    </div>
+
+    <div id="toast-notification" class="toast hidden">Layout Saved!</div>
+
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>

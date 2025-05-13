@@ -143,7 +143,6 @@ document.addEventListener('DOMContentLoaded', () => {
         displayArea.innerHTML = '<p>Connection failed.</p>';
     });
 
-    // TODO: Add logic to request and apply layout configuration on load
-    // socket.emit('requestLayout');
-    // socket.on('loadLayout', (layoutConfig) => { ... });
+    // Request layout from the server when the socket connects or page loads
+    socket.emit('requestLoadLayout');
 });

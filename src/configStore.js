@@ -1,8 +1,25 @@
 const fs = require('fs');
 const path = require('path');
+const { app } = require('electron'); // Added to get app path
 
-const LAYOUT_CONFIG_FILE_PATH = path.join(__dirname, 'layout.json');
-const SETTINGS_CONFIG_FILE_PATH = path.join(__dirname, 'settings.json'); // New settings file
+// Get the user data path from Electron
+const userDataPath = app.getPath('userData');
+
+// Define paths for layout and settings files within the user data directory
+const LAYOUT_CONFIG_FILE_PATH = path.join(userDataPath, 'layout.json');
+const SETTINGS_CONFIG_FILE_PATH = path.join(userDataPath, 'settings.json');
+
+// Ensure the user data directory for our app exists
+try {
+    if (!fs.existsSync(userDataPath)) {
+        fs.mkdirSync(userDataPath, { recursive: true });
+        console.log('User data directory created at:', userDataPath);
+    }
+} catch (error) {
+    console.error('Failed to create userData directory:', error);
+    // If this fails, saving/loading might not work as expected.
+    // Depending on the app's criticality for these files, you might want to alert the user or exit.
+}
 
 const defaultLayout = {
     background: '#333333', // Default background color
@@ -21,6 +38,11 @@ const defaultSettings = {
 function saveLayout(layoutConfig) {
     try {
         const data = JSON.stringify(layoutConfig, null, 2); // Pretty print JSON
+        // Ensure directory exists before writing (it should from above, but good practice)
+        const dir = path.dirname(LAYOUT_CONFIG_FILE_PATH);
+        if (!fs.existsSync(dir)) {
+            fs.mkdirSync(dir, { recursive: true });
+        }
         fs.writeFileSync(LAYOUT_CONFIG_FILE_PATH, data, 'utf8');
         console.log('Layout saved successfully to', LAYOUT_CONFIG_FILE_PATH);
         return true;
@@ -83,6 +105,11 @@ function loadSettings() {
 function saveSettings(settings) {
     try {
         const data = JSON.stringify(settings, null, 2); // Pretty print JSON
+        // Ensure directory exists before writing
+        const dir = path.dirname(SETTINGS_CONFIG_FILE_PATH);
+        if (!fs.existsSync(dir)) {
+            fs.mkdirSync(dir, { recursive: true });
+        }
         fs.writeFileSync(SETTINGS_CONFIG_FILE_PATH, data, 'utf8');
         console.log('Settings saved successfully to', SETTINGS_CONFIG_FILE_PATH);
         return true;
